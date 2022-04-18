@@ -1,7 +1,8 @@
 {
-  "name": "famjam",
+  "type": "module",
+  "name": "full-stack-server-node",
   "version": "1.0.0",
-  "description": "famjam server",
+  "description": "Node.js HTTP Web server for the FamJam application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,17 +12,21 @@
     "url": "git+https://github.com/thesidshah/famjam.git"
   },
   "keywords": [
-    "final",
-    "project"
+    "Node",
+    "REST",
+    "SERVER",
+    "HTTP"
   ],
-  "author": "group",
+  "author": "Rishita Reddy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thesidshah/famjam/issues"
+    "url": "https://github.com/thesidshah/famjam.git/issues"
   },
-  "homepage": "https://github.com/thesidshah/famjam#readme",
+  "homepage": "https://github.com/thesidshah/famjam.git#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
   }
 }
