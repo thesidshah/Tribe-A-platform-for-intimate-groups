@@ -1,8 +1,8 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 const expenseSchema = mongoose.Schema({
     title:String,
     amount: { type: Number, default: 0 },
-    paymentDate: {type: Date ,default: +new Date()},
+    paymentDate: {type: Date },
     payee: String,
-    postedOn: Date}, {collection: 'expense'});
+    postedOn: {type: Date}}, {collection:'expense'});
 export default expenseSchema;
