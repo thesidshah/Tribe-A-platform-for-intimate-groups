@@ -5,8 +5,8 @@ const todosSchema = mongoose.Schema({
     createdBy: String,
     assignedTo: String,
     done: Boolean,
-    dueDate: String,
-    createdOn: String},
+    dueDate: {type: Date},
+    createdOn: {type: Date}},
     {collection: 'todoItem'});
 export default todosSchema;
 
