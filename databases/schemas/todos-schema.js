@@ -1,12 +1,15 @@
 import mongoose from "mongoose"
 const todosSchema = mongoose.Schema({
     title: String,
-    description: String,
-    createdBy: String,
-    assignedTo: String,
-    done: Boolean,
-    dueDate: {type: Date},
-    createdOn: {type: Date}},
-    {collection: 'todoItem'});
+    todos: [{
+        title: String,
+        description: String,
+        createdBy: String,
+        assignedTo: String,
+        dueDate: {type: Date},
+        createdOn: {type: Date}
+        }]
+    },
+    {collection: 'todoSection'});
 export default todosSchema;
 
