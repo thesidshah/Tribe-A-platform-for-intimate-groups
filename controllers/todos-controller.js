@@ -15,7 +15,7 @@ export default (app) => {
 
 const findAllSections = async (req, res) => {
     const gid = req.params.gid;
-    const group = await groupsDao.findSectionsByGroupId(gid);
+    const group = await groupsDao.findByGroupId(gid);
     const todos = await todosDao.findAllSections(group.todoSectionIds);
     res.json(todos);
 }
