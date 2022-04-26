@@ -4,6 +4,7 @@ export default (app) => {
     app.get('/', (req, res) => {
         res.send('Hello WORLD !! This is server end.')
     });
+
     app.get('/famjam/group1/expense', findAllExpenses);
     app.post('/famjam/group1/expense', createExpense);
     app.delete('/famjam/group1/expense/:exId', deleteExpense);
