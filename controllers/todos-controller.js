@@ -1,19 +1,22 @@
 import * as todosDao from "../databases/dao/todos-dao.js";
+import * as groupsDao from "../databases/dao/groups-dao.js";
 
 export default (app) => {
     app.get('/', (req, res) => {
         res.send('Server works fine.')
     });
-    app.get('/famjam/group1/todo', findAllSections);
-    app.post('/famjam/group1/todo', createSection);
-    app.put('/famjam/group1/todo/:sid', createTodo);
-    app.put('/famjam/group1/todo/:sid/:tid', deleteTodo);
-    app.put('/famjam/group1/todo/update/:sid/:tid', updateTodo);
-    app.delete('/famjam/group1/todo/:sid', deleteSection);
+    app.get('/famjam/:gid/todo', findAllSections);
+    app.post('/famjam/:gid/todo', createSection);
+    app.put('/famjam/:gid/todo/:sid', createTodo);
+    app.put('/famjam/:gid/todo/:sid/:tid', deleteTodo);
+    app.put('/famjam/:gid/todo/update/:sid/:tid', updateTodo);
+    app.delete('/famjam/:gid/todo/:sid', deleteSection);
 }
 
 const findAllSections = async (req, res) => {
-    const todos = await todosDao.findAllSections()
+    const gid = req.params.gid;
+    const group = await groupsDao.findSectionsByGroupId(gid);
+    const todos = await todosDao.findAllSections(group.todoSectionIds);
     res.json(todos);
 }
 
@@ -29,9 +32,11 @@ const createTodo = async (req, res) => {
 
 const createSection = async (req, res) => {
     const newSection = req.body;
+    const gid = req.params.gid;
     newSection.todos = [];
-    const insertedTodo = await todosDao.createSection(newSection);
-    res.json(insertedTodo);
+    const insertedSection = await todosDao.createSection(newSection);
+    const updateGroup = await groupsDao.addSectionInGroup(insertedSection._id, gid);
+    res.json(insertedSection);
 }
 
 const deleteTodo = async (req, res) => {
@@ -43,8 +48,10 @@ const deleteTodo = async (req, res) => {
 
 const deleteSection = async (req, res) => {
     const sectionId = req.params.sid;
+    const gid = req.params.gid;
     const status = await todosDao.deleteSection(sectionId);
-    res.send(status);
+    const statusGroup = await groupsDao.deleteSectionFromGroup(sectionId, gid);
+    res.send(statusGroup);
 }
 
 const updateTodo = async (req, res) => {
