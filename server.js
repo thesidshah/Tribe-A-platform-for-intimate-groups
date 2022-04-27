@@ -8,8 +8,10 @@ import {google} from 'googleapis';
 import usersController from "./controllers/users-controller.js";
 import expenseController from "./controllers/expense-controller.js";
 import todoController from "./controllers/todos-controller.js";
+import groupController from "./controllers/groups-controller.js";
 const CONNECTION_STRING = "mongodb+srv://famjam:famjamwd@cluster1.bu0bd.mongodb.net/famjam?retryWrites=true&w=majority"
 mongoose.connect(CONNECTION_STRING);
+
 const app = express();
 
 app.use(cors());
@@ -17,6 +19,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 expenseController(app);
 todoController(app);
+groupController(app);
 usersController(app);
 
 
@@ -91,7 +94,3 @@ app.post("/getValidToken", async (req, res) => {
 app.listen(process.env.PORT || 4000, () => {
     console.log("listening on port 4000");
 });
-
-
-
-

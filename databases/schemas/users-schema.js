@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 const usersSchema = mongoose.Schema({
     firstName:{type: String, default:""},
@@ -13,3 +14,4 @@ const usersSchema = mongoose.Schema({
     role: String,
     dateJoined: {type: Date}}, {collection:'users'});
 export default usersSchema;
+
