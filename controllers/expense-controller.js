@@ -9,6 +9,7 @@ export default (app) => {
     app.post('/famjam/:gid/expense', createExpense);
     app.delete('/famjam/:gid/expense/:exId', deleteExpense);
     app.put('/famjam/:gid/expense/:exId', updateExpense);
+
 }
 
 const createExpense = async  (req, res) => {
