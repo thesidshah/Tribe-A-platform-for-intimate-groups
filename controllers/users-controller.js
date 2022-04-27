@@ -6,6 +6,7 @@ export default (app) => {
     app.get('/famjam/users', findAllUsers);
     app.post('/famjam/users', createUser);
     app.get('/famjam/users/:email', findOneUser);
+    app.put('/famjam/group1/profile/:usersId', updateUsers);
 }
 
 const findAllUsers = async (req, res) => {
@@ -22,4 +23,12 @@ const createUser = async  (req, res) => {
     const newUser = req.body;
     const insertedUser = await usersDao.createUser(newUser);
     res.json(insertedUser);
+}
+
+const updateUsers = async (req, res) => {
+console.log("rfbee");
+    const usersIdToUpdate = req.params.usersId;
+    const updatedUsers = req.body;
+    const status = await UsersDao.updateUsers(usersIdToUpdate, updatedUsers);
+    res.send(status);
 }

@@ -8,6 +8,7 @@ import {google} from 'googleapis';
 import usersController from "./controllers/users-controller.js";
 import expenseController from "./controllers/expense-controller.js";
 import todoController from "./controllers/todos-controller.js";
+import postsController from "./controllers/posts-controller.js";
 import groupController from "./controllers/groups-controller.js";
 const CONNECTION_STRING = "mongodb+srv://famjam:famjamwd@cluster1.bu0bd.mongodb.net/famjam?retryWrites=true&w=majority"
 mongoose.connect(CONNECTION_STRING);
@@ -21,7 +22,7 @@ expenseController(app);
 todoController(app);
 groupController(app);
 usersController(app);
-
+postsController(app);
 
 const oauth2Client = new google.auth.OAuth2(
     "908457627339-nuu917mjc3h6c9544rvqrv9cjvpgp5rc.apps.googleusercontent.com",
