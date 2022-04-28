@@ -15,10 +15,8 @@ export default (app) => {
 const createExpense = async  (req, res) => {
     const newExpense = req.body;
     const gid = req.params.gid;
-
     const insertedExpense = await expenseDao.createExpense(newExpense);
     const updateGroup = await groupsDao.addExpenseInGroup(insertedExpense._id, gid);
-
     res.json(insertedExpense);
 }
 
