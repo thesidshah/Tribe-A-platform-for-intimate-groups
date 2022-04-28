@@ -7,7 +7,6 @@ const postsSchema = mongoose.Schema({
     handle: String,
     likes: Number,
     comments: String,
-    postedBy: {
-       username: String
-    }}, {collection:'posts'});
+    postedBy: String
+    }, {collection:'posts'});
 export default postsSchema;
