@@ -9,6 +9,7 @@ export default (app) => {
     app.post('/famjam/:gid/posts', createPosts);
     app.delete('/famjam/:gid/posts/:postsId', deletePosts);
     app.put('/famjam/:gid/posts/:postsId', updatePosts);
+    app.get('/famjam/posts/user/:userId',findPostByCurrentUser)
 }
 
 const createPosts = async  (req, res) => {
@@ -43,4 +44,11 @@ const updatePosts = async (req, res) => {
     const updatedPosts = req.body;
     const status = await PostsDao.updatePosts(postsIdToUpdate, updatedPosts);
     res.send(status);
+}
+
+const findPostByCurrentUser = async (req, res) => {
+    const userId = req.params.userId;
+    console.log(userId);
+    const posts = await PostsDao.findPostsByUser(userId);
+    res.json(posts);
 }

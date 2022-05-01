@@ -1,12 +1,20 @@
 import * as usersDao from "../databases/dao/users-dao.js";
+
 export default (app) => {
     app.get('/', (req, res) => {
         res.send('Hello WORLD !! This is server end.')
     });
     app.get('/famjam/users', findAllUsers);
+    app.get('/famjam/users/id/:usersId', findUserId);
     app.post('/famjam/users', createUser);
     app.get('/famjam/users/:email', findOneUser);
     app.put('/famjam/users/:usersId', updateUsers);
+}
+
+const findUserId = async (req, res) => {
+    const users = await usersDao.findUserById(req.params.usersId)
+    console.log(users);
+    res.json(users);
 }
 
 const findAllUsers = async (req, res) => {
