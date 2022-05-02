@@ -11,6 +11,9 @@ const usersSchema = mongoose.Schema({
     bannerPicture: {type: String,default:""},
     bio: {type: String, default:""},
     gender: {type: String, default:""},
-    dateJoined: {type: Date}}, {collection:'users'});
+    role: String,
+    calendarId:String,
+    dateJoined: {type: Date}}, {collection:'users'}
+);
 export default usersSchema;
 
