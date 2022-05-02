@@ -24,8 +24,10 @@ const createPosts = async  (req, res) => {
 const findAllPosts = async (req, res) => {
     const gid = req.params.gid;
     const group = await groupsDao.findByGroupId(gid);
-    const posts = await PostsDao.findAllPosts(group.postsIds);
-    res.json(posts);
+    if(group) {
+        const posts = await PostsDao.findAllPosts(group.postsIds);
+        res.json(posts);
+    }
 }
 
 const deletePosts = async (req, res) => {
