@@ -15,9 +15,6 @@ export default (app) => {
 const createPosts = async  (req, res) => {
     const newPosts = req.body;
     const gid = req.params.gid;
-    newPosts.image = "../../images/tom.jpg";
-    newPosts.handle = "tomthecat";
-    newPosts.author = "Tom";
     newPosts.likes = 0;
     const insertedPosts = await PostsDao.createPosts(newPosts);
     const updateGroup = await groupsDao.addPostInGroup(insertedPosts._id, gid);
