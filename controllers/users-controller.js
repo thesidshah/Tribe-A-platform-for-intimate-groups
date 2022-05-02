@@ -5,7 +5,7 @@ export default (app) => {
     app.get('/', (req, res) => {
         res.send('Hello WORLD !! This is server end.')
     });
-    app.get('/famjam/users/:gid', findAllUsers);
+    app.get('/famjam/users/group/:gid', findAllUsers);
     app.post('/famjam/users', createUser);
     app.get('/famjam/users/:email', findOneUser);
     app.put('/famjam/users/:usersId', updateUsers);
@@ -15,13 +15,14 @@ export default (app) => {
 const findAllUsers = async (req, res) => {
     const gid = req.params.gid;
     const group = await groupsDao.findByGroupId(gid);
-    console.log(group);
     const users = await usersDao.findAllUsers(group.userIds);
     res.json(users);
 }
 
 const findOneUser = async (req, res) => {
+
     const users = await usersDao.findOneUser( req.params.email);
+    console.log(users);
     res.json(users);
 }
 
