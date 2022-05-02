@@ -1,9 +1,11 @@
 import * as usersDao from "../databases/dao/users-dao.js";
+import * as groupsDao from "../databases/dao/groups-dao.js";
+
 export default (app) => {
     app.get('/', (req, res) => {
         res.send('Hello WORLD !! This is server end.')
     });
-    app.get('/famjam/users', findAllUsers);
+    app.get('/famjam/users/:gid', findAllUsers);
     app.post('/famjam/users', createUser);
     app.get('/famjam/users/:email', findOneUser);
     app.put('/famjam/users/:usersId', updateUsers);
@@ -11,7 +13,10 @@ export default (app) => {
 }
 
 const findAllUsers = async (req, res) => {
-    const users = await usersDao.findAllUsers()
+    const gid = req.params.gid;
+    const group = await groupsDao.findByGroupId(gid);
+    console.log(group);
+    const users = await usersDao.findAllUsers(group.userIds);
     res.json(users);
 }
 
