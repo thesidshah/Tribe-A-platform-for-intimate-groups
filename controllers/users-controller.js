@@ -12,7 +12,7 @@ export default (app) => {
     app.post('/famjam/users', createUser);
     app.get('/famjam/users/:email', findOneUser);
     app.put('/famjam/users/:usersId', updateUsers);
-    app.get('/famjam/users/id/:usersId', findUserId);
+
 }
 
 const findUserId = async (req, res) => {
@@ -48,9 +48,4 @@ const updateUsers = async (req, res) => {
     res.send(status);
 }
 
-const findUserId = async (req, res) => {
-    const users = await usersDao.findUserById(req.params.usersId);
-    console.log(users);
-    res.json(users);
-}
 
